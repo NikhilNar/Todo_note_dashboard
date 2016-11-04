@@ -19,4 +19,6 @@ class Home extends CI_Controller{
         $query=$this->db->query("select * from USER ");
         print_r($query->result());
     }
+
+
 }

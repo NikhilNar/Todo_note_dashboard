@@ -13,8 +13,7 @@ class User extends CI_Controller{
 
     public function login(){
         $login=$this->input->post('login');
-        $password=$this->input->post('password');
-
+        $password=hash('sha256',$this->input->post('password').SALT);
         $data=array('login'=>$login,'password'=>$password);
         $result=$this->user_model->get($data);
 
@@ -28,7 +27,7 @@ class User extends CI_Controller{
             return false;
 
         }
-        
+
             $this->output->set_output(json_encode(array('result'=>0)));
 
 
