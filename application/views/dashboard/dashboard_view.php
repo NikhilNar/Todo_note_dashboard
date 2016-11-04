@@ -1,7 +1,10 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Nikhil
- * Date: 04-11-2016
- * Time: 15:40
- */
+<div class="container">
+    <div class="row">
+        <div class="col-md-3" id="dashboard-side">
+
+        </div>
+        <div class="col-md-8" id="dashboard-main">
+
+        </div>
+    </div>
+</div>

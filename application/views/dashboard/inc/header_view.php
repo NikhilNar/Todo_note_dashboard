@@ -8,6 +8,17 @@
     <script src="<?=base_url()?>public/js/bootstrap.js"></script>
 </head>
 <body>
-<header>
-    jrDash
-</header>
+<nav class="navbar navbar-light bg-faded">
+    <a class="navbar-brand" href="#">jrDash</a>
+    <ul class="nav navbar-nav">
+        <li class="nav-item active">
+            <a class="nav-link" href="#">Dashboard <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">User</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="<?=site_url("dashboard/logout")?>">Logout</a>
+        </li>
+
+</nav>
