@@ -17,7 +17,7 @@ class CRUD_model extends  CI_model{
         $query="";
 
         if(is_numeric($id)){
-            $sql=$sql." where ".$this->_primary_key." = '".$id."'";
+            $sql=$sql." where ".$this->session->userdata('user_id')." = '".$id."'";
         }
         else if(is_array($id)){
             $sql=$sql." where ";
@@ -31,8 +31,17 @@ class CRUD_model extends  CI_model{
         }
 
         $query=$this->db->query($sql);
-        return $query->result();
+        //$result=array();
 
+        /*foreach($query->result() as $row){
+            array_push($result,$row);
+        }
+        print_r($result);*/
+
+
+        //return $result;
+
+        return $query->result();
     }
 
     public function insert($data){

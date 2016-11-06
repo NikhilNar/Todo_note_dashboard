@@ -81,6 +81,13 @@ class API extends CI_Controller{
 
     }
 
+    public function get_todo(){
+        $this->_require_login();
+        $this->load->model('todo_model');
+        $result=$this->todo_model->get($this->session->userdata('user_id'));
+        print_r($result);
+
+    }
 
     public function create_todo(){
         $this->_require_login();
