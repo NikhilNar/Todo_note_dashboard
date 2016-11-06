@@ -84,8 +84,8 @@ class API extends CI_Controller{
     public function get_todo(){
         $this->_require_login();
         $this->load->model('todo_model');
-        $result=$this->todo_model->get($this->session->userdata('user_id'));
-        print_r($result);
+        $result=$this->todo_model->get_data_by_user_id($this->session->userdata('user_id'));
+        $this->output->set_output(json_encode($result));
 
     }
 
@@ -104,7 +104,8 @@ class API extends CI_Controller{
         $result=$this->todo_model->insert($data);
 
         if($result>0){
-            $this->output->set_output(json_encode(array('result'=>1)));
+            $data=$this->todo_model->get($this->db->insert_id());
+            $this->output->set_output(json_encode(array('result'=>1,'data'=>$data)));
             return false;
         }
         $this->output->set_output(json_encode(array('result'=>0,'error'=>'Not able to insert your data')));
@@ -113,12 +114,24 @@ class API extends CI_Controller{
     public function update_todo(){
         $this->_require_login();
         $todo_id=$this->input->post('todo_id');
+        $completed=$this->input->post('completed');
+
+        
 
     }
 
     public function delete_todo(){
         $this->_require_login();
         $todo_id=$this->input->post('todo_id');
+
+        $this->load->model('todo_model');
+        $result=$this->todo_model->delete($todo_id);
+
+        if($result>0){
+            $this->output->set_output(json_encode(array('result'=>1)));
+            return false;
+        }
+        $this->output->set_output(json_encode(array('result'=>0,'error'=>'Not able to delete')));
     }
 
     public function create_note(){

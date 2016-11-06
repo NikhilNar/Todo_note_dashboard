@@ -17,6 +17,40 @@ class CRUD_model extends  CI_model{
         $query="";
 
         if(is_numeric($id)){
+            $sql=$sql." where ".$this->_primary_key." = '".$id."'";
+        }
+        else if(is_array($id)){
+            $sql=$sql." where ";
+
+            foreach($id as $key=>$value){
+                $sql=$sql.$key." = '".$value."'" ;
+                $sql=$sql." and ";
+            }
+
+            $sql=substr($sql,0,sizeof($sql)-5);
+        }
+
+        $query=$this->db->query($sql);
+        //$result=array();
+
+        /*foreach($query->result() as $row){
+            array_push($result,$row);
+        }
+        print_r($result);*/
+
+
+        //return $result;
+
+        return $query->result();
+    }
+
+
+    public function get_data_by_user_id($id=null){
+
+        $sql="select * from ".$this->_table;
+        $query="";
+
+        if(is_numeric($id)){
             $sql=$sql." where ".$this->session->userdata('user_id')." = '".$id."'";
         }
         else if(is_array($id)){

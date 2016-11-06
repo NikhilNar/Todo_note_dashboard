@@ -8,8 +8,9 @@ var Template=function(){
 
     this.todo=function(obj){
         var output='';
-        output +='<div id="'+obj.todo_id+'">';
+        output +='<div id="todo_'+obj.todo_id+'">';
         output +='<span>'+obj.content+'</span>';
+        output +='<a data-id="'+obj.todo_id+'"  class="todo_delete" href="api/delete_todo">delete</a>';
         output +='</div>';
         return output;
     };
@@ -19,6 +20,7 @@ var Template=function(){
         var output='';
         output +='<div id="'+obj.note_id+'">';
         output +='<span>'+obj.title+'</span>';
+          output +='<span>'+obj.title+'</span>';
         output +='<span>'+obj.content+'</span>';
         output +='</div>';
         return output;
