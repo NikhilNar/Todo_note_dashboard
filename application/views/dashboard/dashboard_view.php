@@ -1,4 +1,11 @@
 <div class="container">
+    <div id="error" class="alert alert-danger hide" role="alert">
+
+    </div>
+
+    <div id="success" class="alert alert-success hide" role="alert">
+
+    </div>
     <div class="row">
         <div class="col-md-4" id="dashboard-side">
             <form class="form-inline" id="create_todo" method="post" action="<?=base_url()?>api/create_todo">

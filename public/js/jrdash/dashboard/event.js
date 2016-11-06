@@ -28,11 +28,14 @@ var Event=function(){
 
             $.post(url,posData,function(o){
                 if(o.result==1){
-                    Result.success();
+
+                    Result.success("Success");
+
                 }
                 else
                 {
-                    Result.error();
+                    Result.error(o.error);
+
                 }
 
             },'json');
