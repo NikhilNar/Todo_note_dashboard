@@ -6,6 +6,20 @@
     <link rel="stylesheet" href="<?=base_url()?>public/css/style.css"/>
     <script src="<?=base_url()?>public/js/jquery.js"></script>
     <script src="<?=base_url()?>public/js/bootstrap.js"></script>
+    <script src="<?=base_url()?>public/js/jrdash/dashboard/result.js"></script>
+    <script src="<?=base_url()?>public/js/jrdash/dashboard/event.js"></script>
+    <script src="<?=base_url()?>public/js/jrdash/dashboard/template.js"></script>
+    <script src="<?=base_url()?>public/js/jrdash/dashboard.js"></script>
+    <script>
+        $(function(){
+
+            //Init the dashboard application
+            var dashboard=new Dashboard();
+        });
+
+
+    </script>
+
 </head>
 <body>
 <nav class="navbar navbar-light bg-faded">

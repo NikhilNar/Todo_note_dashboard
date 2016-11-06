@@ -1,5 +1,5 @@
 <div class="container" id="main-container">
-    <form method="post" id="login_form" action="<?=site_url('user/login')?>">
+    <form method="post" id="login_form" action="<?=site_url('api/login')?>">
         <div class="form-group">
             <input type="text" name="login"class="form-control" id="login" aria-describedby="emailHelp" placeholder="Enter email">
         </div>
@@ -8,6 +8,8 @@
         </div>
         <button type="submit" value="login"name="submit"class="btn btn-primary">Submit</button>
     </form>
+
+    <a href="<?=site_url('home/register')?>">Register</a>
 
 </div>
 
@@ -19,7 +21,8 @@
 
         $.post(url,posData,function(o){
             if(o.result==1){
-                window.location.href="<?=site_url()?>dashboard";
+
+                window.location.href="<?=site_url('dashboard')?>";
             }
             else{
                 alert("Bad login");

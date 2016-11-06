@@ -3,51 +3,57 @@
 
 class CRUD_model extends  CI_model{
 
+    protected $_table=null;
+    protected $_primary_key=null;
+
     public function __construct(){
 
         parent::__construct();
     }
 
-    public function get($user_id=null){
+    public function get($id=null){
 
-        $sql="";
+        $sql="select * from ".$this->_table;
         $query="";
-        if($user_id==null){
-            $sql="select * from USER ";
-            $query=$this->db->query($sql);
+
+        if(is_numeric($id)){
+            $sql=$sql." where ".$this->_primary_key." = '".$id."'";
         }
-        else if(is_array($user_id)){
-            $sql="select * from user where login=? and password=?";
-            $query=$this->db->query($sql,array($user_id['login'],$user_id['password']));
-        }
-        else{
-            $sql="select * from user where user_id=?";
-            $query=$this->db->query($sql,array($user_id));
+        else if(is_array($id)){
+            $sql=$sql." where ";
+
+            foreach($id as $key=>$value){
+                $sql=$sql.$key." = '".$value."'" ;
+                $sql=$sql." and ";
+            }
+
+            $sql=substr($sql,0,sizeof($sql)-5);
         }
 
+        $query=$this->db->query($sql);
         return $query->result();
 
     }
 
     public function insert($data){
-        $this->db->insert('user',$data);
+        $this->db->insert($this->_table,$data);
 
         return $this->db->insert_id();
     }
 
     public function update($data,$id){
-        $this->db->where('user_id',$id);
-        $this->db->update('user',$data);
+        $this->db->where($this->_primary_key,$id);
+        $this->db->update($this->_table,$data);
 
         return $this->db->affected_rows();
 
     }
 
     public function delete($id){
-        $this->db->delete('user',array('user_id'=>$id));
+        $this->db->delete($this->_table,array($this->_primary_key=>$id));
         return $this->db->affected_rows();
     }
-}
+
 
 }
 

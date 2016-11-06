@@ -1,6 +1,6 @@
 <?php
 
-class User extends CI_Controller{
+class Test extends CI_Controller{
 
     public function __construct(){
         parent::__construct();
@@ -8,13 +8,14 @@ class User extends CI_Controller{
     }
 
     public function get(){
-        print_r($this->user_model->get());
+        $result= $this->user_model->get("2");
+        print_r($result);
     }
 
 
 
     public function insert(){
-        $data=array('login'=>'nikhilnar','password'=>'nikhil','email'=>'nikhil.nar@amdocs.com');
+        $data=array('login'=>'nikhilnar123','password'=>'nikhil','email'=>'nikhil1234.nar@amdocs.com');
 
         echo $this->user_model->insert($data);
     }
@@ -25,7 +26,7 @@ class User extends CI_Controller{
     }
 
     public function delete(){
-       echo $this->user_model->delete(3);
+       echo $this->user_model->delete(8);
     }
 }
 
