@@ -31,6 +31,9 @@ var Event=function(){
 
                     Result.success("Success");
 
+                    var output=Template.todo(o.data[0]);
+                    $("#list_todo").append(output);
+
                 }
                 else
                 {
@@ -54,6 +57,30 @@ var Event=function(){
 
     var update_todo=function(){
 
+        $(document).on('click',".todo_update",function(evt){
+            evt.preventDefault();
+            var self=$(this).parent('div');
+
+            var url=$(this).attr("href");
+            var posData={
+                'todo_id':$(this).attr("data-id"),
+                'completed':$(this).attr("data-completed")
+            };
+
+            $.post(url,posData,function(o){
+                if(o.result==1){
+                    Result.success("Saved");
+                    self.addClass('todo_complete');
+                }
+                else{
+                    Result.error("Nothing updated");
+                }
+
+
+            },'json');
+
+        });
+
     }
 
     //--------------------------------------------------------------------------
@@ -71,6 +98,28 @@ var Event=function(){
     //--------------------------------------------------------------------------
 
     var delete_todo=function(){
+        $(document).on('click',".todo_delete",function(evt){
+            evt.preventDefault();
+            var self=$(this).parent('div');
+
+            var url=$(this).attr("href");
+            var posData={
+                'todo_id':$(this).attr("data-id")
+            };
+
+            $.post(url,posData,function(o){
+                if(o.result==1){
+                    Result.success("Item Deleted");
+                    self.remove();
+
+                }
+                else{
+                    Result.error(o.msg);
+                }
+
+
+            },'json');
+        });
 
     }
 

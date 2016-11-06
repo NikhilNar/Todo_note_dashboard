@@ -22,3 +22,7 @@
 .hide{
     display:none;
 }
+
+.todo_complete{
+    color: #51a35a;
+}

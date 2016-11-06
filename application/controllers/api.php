@@ -116,8 +116,16 @@ class API extends CI_Controller{
         $todo_id=$this->input->post('todo_id');
         $completed=$this->input->post('completed');
 
-        
+        $this->load->model('todo_model');
+        $data=array('completed'=>$completed);
+        $result=$this->todo_model->update($data,$todo_id);
 
+        if($result >0 ){
+            $this->output->set_output(json_encode(array('result'=>1)));
+            return false;
+        }
+
+        $this->output->set_output(json_encode(array('result'=>0)));
     }
 
     public function delete_todo(){
