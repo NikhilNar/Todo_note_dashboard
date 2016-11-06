@@ -59,7 +59,7 @@ var Event=function(){
 
         $(document).on('click',".todo_update",function(evt){
             evt.preventDefault();
-            var self=$(this).parent('div');
+            var self=$(this);
 
             var url=$(this).attr("href");
             var posData={
@@ -70,7 +70,18 @@ var Event=function(){
             $.post(url,posData,function(o){
                 if(o.result==1){
                     Result.success("Saved");
-                    self.addClass('todo_complete');
+
+                    if(posData.completed==1){
+                        self.parent('div').addClass('todo_complete');
+                        self.html('<i class="fa fa-pencil-square-o" aria-hidden="true"></i>');
+                        self.attr('data-completed',0);
+                    }
+                    else{
+                        self.parent('div').removeClass('todo_complete');
+                        self.html('<i class="fa fa-check" aria-hidden="true"></i>');
+                        self.attr('data-completed',1);
+
+                    }
                 }
                 else{
                     Result.error("Nothing updated");
